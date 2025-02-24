@@ -58,3 +58,24 @@ const order1 = new Order(501, prod1, 2);
 if (order1.orderId) console.log(order1.getOrderDetails());
 console.log(prod1.getDetails());
 
+// Task 3 - Created Inventory Class
+// This class manages a collection of products and allows adding new products to inventory.
+// It also provides a method to list all products in inventory.
+class Inventory {
+    constructor() {
+        this.products = [];
+        this.orders = [];
+    }
+
+    addProduct(product) {
+        this.products.push(product);
+    }
+
+    listProducts() {
+        this.products.forEach(product => console.log(product.getDetails()));
+    }
+}
+
+const inventory = new Inventory();
+inventory.addProduct(prod1);
+inventory.listProducts();
