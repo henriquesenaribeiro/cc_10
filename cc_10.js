@@ -103,3 +103,23 @@ Inventory.prototype.listOrders = function() {
 inventory.placeOrder(601, prod1, 2);
 inventory.listOrders();
 console.log(prod1.getDetails());
+
+// Task 5 - Implemented Product Restocking
+// Added a method to restock a product by increasing its stock level.
+// Ensures the product exists before updating stock.
+Inventory.prototype.restockProduct = function(productId, quantity) {
+    if (quantity < 0) {
+        console.log("Restock quantity must be a non-negative value.");
+        return;
+    }
+    const product = this.products.find(p => p.id === productId);
+    if (product) {
+        product.stock += quantity;
+        console.log(`Restocked Product ID: ${productId} with ${quantity} units.`);
+    } else {
+        console.log("Product not found in inventory.");
+    }
+};
+
+inventory.restockProduct(101, 5);
+console.log(prod1.getDetails());
