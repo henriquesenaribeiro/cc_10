@@ -79,3 +79,27 @@ class Inventory {
 const inventory = new Inventory();
 inventory.addProduct(prod1);
 inventory.listProducts();
+
+// Task 4 - Implemented Order Management
+// Added methods to place an order if stock is available and list all orders.
+// Ensures stock validation before processing an order.
+Inventory.prototype.placeOrder = function(orderId, product, quantity) {
+    if (quantity < 0) {
+        console.log("Quantity must be a non-negative value.");
+        return;
+    }
+    if (product.stock >= quantity) {
+        const order = new Order(orderId, product, quantity);
+        if (order.orderId) this.orders.push(order);
+    } else {
+        console.log("Insufficient stock to place order.");
+    }
+};
+
+Inventory.prototype.listOrders = function() {
+    this.orders.forEach(order => console.log(order.getOrderDetails()));
+};
+
+inventory.placeOrder(601, prod1, 2);
+inventory.listOrders();
+console.log(prod1.getDetails());
